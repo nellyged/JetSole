@@ -1,5 +1,5 @@
 //
-//  LOCFirstViewController.h
+//  CartViewController.h
 //  JetSole
 //
 //  Created by Nelson Gedeon on 2/7/13.
@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface LOCFirstViewController : UIViewController
+@interface CartViewController : UIViewController
 
 @end

@@ -1,0 +1,15 @@
+curl -X PUT \
+  -H "X-Parse-Application-Id: 8XlcykeSbihbcBbSppWBNbw7Z2WcgaHgtIqd6wdL" \
+  -H "X-Parse-REST-API-Key: JPeRTioeZEO08DipSD9n9v2ZxmMzKAegoYC9OzYo" \
+  -H "Content-Type: application/json" \
+  -d '{"Name":"Patty Sneakers"}' \
+  https://api.parse.com/1/classes/Stores/wGQOe351YH
+  
+  
+  
+  curl -X PUT \
+  -H "X-Parse-Application-Id: 8XlcykeSbihbcBbSppWBNbw7Z2WcgaHgtIqd6wdL" \
+  -H "X-Parse-REST-API-Key: JPeRTioeZEO08DipSD9n9v2ZxmMzKAegoYC9OzYo" \
+  -H "Content-Type: application/json" \
+  -d '{"StoreId":{"__op":"AddRelation","objects":[{"__type":"Pointer","className":"Stores","objectId":"rX8jwpVUTZ"}]}}' \
+  https://api.parse.com/1/classes/Stock/IV7ftEKFJs

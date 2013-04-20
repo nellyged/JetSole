@@ -1,18 +1,18 @@
 //
-//  LOCFirstViewController.m
+//  CartViewController.m
 //  JetSole
 //
 //  Created by Nelson Gedeon on 2/7/13.
 //  Copyright (c) 2013 JetSole. All rights reserved.
 //
 
-#import "LOCFirstViewController.h"
+#import "CartViewController.h"
 
-@interface LOCFirstViewController ()
+@interface CartViewController ()
 
 @end
 
-@implementation LOCFirstViewController
+@implementation CartViewController
 
 - (void)viewDidLoad
 {

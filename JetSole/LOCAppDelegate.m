@@ -7,40 +7,63 @@
 //
 
 #import "LOCAppDelegate.h"
+#import <Parse/Parse.h>
+#import "LOCThirdViewController.h"
+#import "Login.h"
+
+
+//@interface LOCAppDelegate () {
+//    NSMutableData *_data;
+//    BOOL firstLaunch;
+//}
+//@property (nonatomic, strong) MBProgressHUD *hud;
+//
+//- (void)setupAppearance;
+//- (BOOL)shouldProceedToMainInterface:(PFUser *)user;
+//- (BOOL)handleActionURL:(NSURL *)url;
+//@end
 
 @implementation LOCAppDelegate
 
-- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
-{
-    // Override point for customization after application launch.
+//@synthesize hud;
+@synthesize window;
+//@synthesize navController;
+
+
+#pragma mark - UIApplicationDelegate
+
+- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    // ****************************************************************************
+    // Uncomment and fill in with your Parse credentials:
+    [Parse setApplicationId:@"8XlcykeSbihbcBbSppWBNbw7Z2WcgaHgtIqd6wdL"
+                  clientKey:@"Sml6lBHAMugpCdYH5nBiQLGBE2NxbB5AxhUUUE0X"];
+    //
+    // If you are using Facebook, uncomment and fill in with your Facebook App Id:
+    // [PFFacebookUtils initializeWithApplicationId:@"your_facebook_app_id"];
+    // ****************************************************************************
+    
+    //[PFUser enableAutomaticUser];
+    
+    [PFFacebookUtils initializeWithApplicationId:@"442806002472337"];
+    [PFTwitterUtils initializeWithConsumerKey:@"your_twitter_consumer_key" consumerSecret:@"your_twitter_consumer_secret"];
+    
+    // Set defualt ACLs
+    PFACL *defaultACL = [PFACL ACL];
+    [defaultACL setPublicReadAccess:YES];
+    [PFACL setDefaultACL:defaultACL withAccessForCurrentUser:YES];
+    
+    LoginViewController *loginViewController = (LoginViewController *)[window.rootViewController.storyboard instantiateViewControllerWithIdentifier:@"Login"];
+    
+    self.window.rootViewController = loginViewController;
+    
+	[self.window makeKeyAndVisible];
+    
     return YES;
 }
-							
-- (void)applicationWillResignActive:(UIApplication *)application
-{
-    // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
-    // Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.
-}
 
-- (void)applicationDidEnterBackground:(UIApplication *)application
-{
-    // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later. 
-    // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
-}
-
-- (void)applicationWillEnterForeground:(UIApplication *)application
-{
-    // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
-}
-
-- (void)applicationDidBecomeActive:(UIApplication *)application
-{
-    // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
-}
-
-- (void)applicationWillTerminate:(UIApplication *)application
-{
-    // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+// Facebook oauth callback
+- (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation {
+    return [PFFacebookUtils handleOpenURL:url];
 }
 
 @end
